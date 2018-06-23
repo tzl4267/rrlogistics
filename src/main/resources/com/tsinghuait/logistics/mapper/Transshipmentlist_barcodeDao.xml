@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+  <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tsinghuait.logistics.mapper.Transshipmentlist_barcodeDao">
+	<insert id="insertTransshipmentlist_barcode" parameterType="transshipmentlist_barcode">
+		insert into
+		transshipmentlist_barcode(primarykey,orderNumber,tranId,state)
+		values(#{primarykey},#{orderNumber},#{tranId
+		},#{state})
+	</insert>
+</mapper>
