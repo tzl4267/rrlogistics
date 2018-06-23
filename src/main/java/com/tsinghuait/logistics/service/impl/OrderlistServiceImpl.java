@@ -1,5 +1,7 @@
 package com.tsinghuait.logistics.service.impl;
 
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
@@ -33,6 +35,27 @@ public class OrderlistServiceImpl implements OrderlistService{
 		
 	}
 
+	
+	@Override
+	public List<Orderlist> selectOrderlists() {
+		return od.selectOrderlists();
+	}
 
+	@Override
+	public Orderlist updateSelectOrderlist(String orderNumber) {
+		return od.updateSelectOrderlist(orderNumber);
+	}
+
+	@Override
+	public void updateOrderlist(Orderlist orderlist) {
+		orderlist.setStus("1");
+		od.updateOrderlist(orderlist);
+	}
+
+
+	@Override
+	public void insertOrderlist(Orderlist orderlist) {
+		od.insertOrderlist(orderlist);
+	}
 
 }

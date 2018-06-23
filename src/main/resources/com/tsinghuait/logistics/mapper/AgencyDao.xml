@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tsinghuait.logistics.mapper.AgencyDao">
+
+<sql id="basesql">
+agencyId,agencyName,cid,cType
+</sql>
+
+<select id="selectByInfo" resultType="agency" parameterType="java.lang.String">
+select 
+<include refid="basesql"></include>
+from agency where agencyId like '%${agencyId}%'
+</select>
+
+
+<select id="selectAll" resultType="agency">
+select 
+<include refid="basesql"></include>
+from agency </select>
+
+<select id="selectAgency" resultType="agency">
+	select * from agency;
+</select>
+</mapper>

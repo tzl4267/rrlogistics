@@ -3,29 +3,27 @@
  */
 package com.tsinghuait.logistics.mapper;
 
-import java.util.Map;
+import java.util.List;
 import java.util.Set;
 
-import com.tsinghuait.logistics.pojo.Permission;
 import com.tsinghuait.logistics.pojo.User;
+import com.tsinghuait.logistics.pojo.UserRole;
 
 
 
 public interface UserDao {
 
-	User find(String uname);
+	User find(String userName);//shiro根据用户名查询用户
 	
-	Set<String> findRoles(String uname);
+	User findUser(String userId);//根据用户id查询用户
 	
-	void add(User u);
+	Set<String> findRoles(String uname);//根据用户名查询角色
 	
-	String hash(User u);
+	void add(User u);//添加用户
 	
-	String get();
+	String getUserId();//获取用户编号
 	
-	String getUserId();
+	List<UserRole> selectAll(String agencyId);//根据网点编号查用户和角色信息
 	
-	Map<String, Permission> rp(String uname);
-	
-	
+	void updateUser(User user);//修改用户信息
 }
