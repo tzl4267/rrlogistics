@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.tsinghuait.logistics.mapper.AgencyDao">
+<<<<<<< HEAD
 
 <sql id="basesql">
 agencyId,agencyName,cid,cType
@@ -17,5 +18,9 @@ from agency where agencyId like '%${agencyId}%'
 select 
 <include refid="basesql"></include>
 from agency 
+=======
+<select id="selectAgency" resultType="agency">
+	select * from agency;
+>>>>>>> refs/heads/xlb01
 </select>
 </mapper>

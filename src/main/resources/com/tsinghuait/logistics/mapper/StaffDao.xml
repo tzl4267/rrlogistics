@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.tsinghuait.logistics.mapper.StaffDao">
+<<<<<<< HEAD
 
 <sql id="basesql">
  staffId, name, sex, position,idnumber, workingstarttime, seniority, phonenum,agencyid
@@ -34,4 +35,9 @@ staffId
 </select>
 
 
+=======
+<select id="selectStaffs" resultType="staff">
+	select * from staff;
+</select>
+>>>>>>> refs/heads/xlb01
 </mapper>

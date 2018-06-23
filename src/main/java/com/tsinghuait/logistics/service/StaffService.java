@@ -5,6 +5,7 @@ import java.util.List;
 import com.tsinghuait.logistics.pojo.Staff;
 
 public interface StaffService {
+<<<<<<< HEAD
 
 	
 	String add(Staff s);//添加员工
@@ -15,3 +16,8 @@ public interface StaffService {
 	
 	String getStaffId();//获取最后一个id
 }
+=======
+	//查询用户    订单模块需要揽件员
+	List<Staff> selectStaffs();
+}	
+>>>>>>> refs/heads/xlb01

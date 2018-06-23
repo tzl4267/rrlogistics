@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+<<<<<<< HEAD
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Controller;
@@ -61,4 +62,22 @@ public class StaffServiceImpl implements StaffService{
 
 	
 	
+=======
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import com.tsinghuait.logistics.mapper.StaffDao;
+import com.tsinghuait.logistics.pojo.Staff;
+import com.tsinghuait.logistics.service.StaffService;
+@Service
+@Transactional
+public class StaffServiceImpl implements StaffService{
+	@Resource
+	private StaffDao sd;
+	@Override
+	public List<Staff> selectStaffs() {
+		return sd.selectStaffs();
+	}
+
+>>>>>>> refs/heads/xlb01
 }

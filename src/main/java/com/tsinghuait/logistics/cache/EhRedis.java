@@ -9,7 +9,7 @@ import java.io.ObjectOutputStream;
 import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
-
+import javax.lang.model.element.Element;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -19,12 +19,10 @@ import org.springframework.dao.DataAccessException;
 import org.springframework.data.redis.connection.RedisConnection;
 import org.springframework.data.redis.core.RedisCallback;
 import org.springframework.data.redis.core.RedisTemplate;
-import org.springframework.stereotype.Component;
-
 
 import com.tsinghuait.logistics.service.impl.UserServiceImpl;
+
 import net.sf.ehcache.Ehcache;
-import net.sf.ehcache.Element;
 
 public class EhRedis implements org.apache.ibatis.cache.Cache{
 

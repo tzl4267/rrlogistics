@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tsinghuait.logistics.mapper.TruckDao">
+<select id="selectTruck" resultType="truck" parameterType="truck">
+select  * from truck t,agency a 
+<where>
+t.agencyId=a.agencyId
+<if test="platenumber!=null and platenumber!=''">
+ and platenumber like '%${platenumber}%'
+</if>
+</where>
+</select>
+
+<delete id="deleteTruck" parameterType="string">
+delete from truck where vehiclecode=#{vehiclecode};
+</delete>
+
+<select id="updateSelectTruck" resultType="truck" parameterType="String">
+select * from truck where vehiclecode=#{vehiclecode};
+</select>
+ <update id="updateTruck" parameterType="truck">
+  update truck
+  <set>
+   <if test="tStus!=null and tStus!=''">
+  tStus =#{tStus},
+  </if>
+   <if test="agencyId!=null and agencyId!=''">
+  agencyId =#{agencyId},
+  </if>
+   <if test="operation!=null and operation!=''">
+  operation =#{operation},
+  </if>
+   <if test="driving!=null and driving!=''">
+  driving =#{driving},
+  </if>
+   <if test="kilometre!=null and kilometre!=''">
+  kilometre =#{kilometre},
+  </if>
+   <if test="oilConsumption!=null and oilConsumption!=''">
+  oilConsumption =#{oilConsumption},
+  </if>
+  </set>
+  <where>
+  vehiclecode =#{vehiclecode }
+  </where>
+  </update>
+  
+  <insert id="insertTruck" parameterType="truck">
+  insert into truck(vehiclecode,platenumber,servicetimelimit,tStus,operation,driving,kilometre,motTime,oilConsumption,agencyId) values(#{vehiclecode},#{platenumber},#{servicetimelimit},#{tStus},#{operation},#{driving},#{kilometre},#{motTime},#{oilConsumption},#{agencyId});
+  </insert>
+</mapper>
