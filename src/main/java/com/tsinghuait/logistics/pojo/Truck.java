@@ -1,6 +1,11 @@
 package com.tsinghuait.logistics.pojo;
 
+
 import java.util.Date;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 /*import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -22,7 +27,8 @@ public class Truck { //卡车表
 	private String driving;//行驶证 Certificates
 
 	private String kilometre;//公里数
-
+	@JsonFormat(pattern="yyyy-MM-dd")
+	@DateTimeFormat(pattern="yyyy-MM-dd")
 	private Date motTime;//年检到期时间
 
 	private Double oilConsumption;//油耗
