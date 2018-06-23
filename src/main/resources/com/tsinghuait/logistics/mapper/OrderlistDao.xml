@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tsinghuait.logistics.mapper.OrderlistDao">
+		<!-- 查询所有信息 -->
+      <select id="selector" parameterType="String" resultType="orderlist">
+        select * from orderlist where orderNumber=#{orderNumber} and checkstate=1;      
+      </select>
+      <!-- 修改收件人姓名 -->
+      <update id="updateor"  parameterType="orderlist">
+      update orderlist set  sendername=#{sendername} where orderNumber=#{orderNumber};
+      </update>
+      <!-- 修改状态 -->
+        <update id="updateod"  parameterType="orderlist">
+      update orderlist set  checkstate=#{checkstate} where orderNumber=#{orderNumber};
+      </update>
+</mapper>

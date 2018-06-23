@@ -66,9 +66,19 @@ public class Orderlist { // 订单/结算
 	private String urgent;//是否加急
 	
 	private String orderPayType;//付费方式 到付/寄付
+	
+	private Double moneyTota;//运费
 
 	
 	
+	public Double getMoneyTota() {
+		return moneyTota;
+	}
+
+	public void setMoneyTota(Double moneyTota) {
+		this.moneyTota = moneyTota;
+	}
+
 	public String getBarcode() {
 		return barcode;
 	}
