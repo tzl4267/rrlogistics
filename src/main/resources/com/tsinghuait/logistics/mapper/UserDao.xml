@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tsinghuait.logistics.mapper.UserDao">
+
+<!-- <cache type="com.tsinghuait.logistics.cache.LoggingEhRedisCache" flushInterval="60000" eviction="LRU" ></cache> -->
+
+<resultMap type="UserRole" id="urole">
+<result column="userId" property="userId"/>
+<result column="userName" property="userName"/>
+<result column="rname" property="rname"/>
+<result column="name" property="name"/>
+<result column="sex" property="sex"/>
+<result column="idnumber" property="idnumber"/>
+<result column="phonenum" property="phonenum"/>
+</resultMap>
+
+<sql id="baseColumn">
+ userId, userName, pass,idtype, agencyId,staffId
+</sql>
+
+
+<select id="find" resultType="user" parameterType="java.lang.String" >
+select 
+<include refid="baseColumn"></include>
+ from user where userName=#{userName}
+</select>
+
+<select id="findRoles" resultType="java.lang.String" parameterType="java.lang.String">
+select r.rname from user u,role r ,user_role ur where r.rid = ur.rid and u.userId=ur.userId and u.uname=#{uname};
+</select>
+
+<select id="selectAll" resultMap="urole" parameterType="java.lang.String">
+select u.userId, u.userName, r.rname, s.name, s.sex, s.idnumber, s.phonenum
+from user u,role r ,staff s
+where r.rid = u.idtype and s.staffId=u.staffId 
+and s.agencyid='${value}'
+</select>
+
+<select id="getUserId" resultType="String" >
+select 
+userId
+ from user order by userId desc limit 0 ,1;
+</select>
+
+
+<insert id="add" parameterType="User" >
+insert into user (userId, userName, pass,idtype, agencyId,staffId) values(#{userId},#{userName},#{pass},#{idtype},#{agencyId},#{staffId});
+</insert>
+
+<select id="findUser" resultType="user" parameterType="java.lang.String">
+select * from user where userId = '${value}'
+</select>
+
+<update id="updateUser" parameterType="user">
+update user set 
+<if test="userName">
+userName='${userName}'
+</if>
+<if test="idtype">
+,idtype='${idtype}'
+</if>
+<if test="staffId">
+,staffId='${staffId}'
+</if>
+where userId='${userId}'
+</update>
+</mapper>

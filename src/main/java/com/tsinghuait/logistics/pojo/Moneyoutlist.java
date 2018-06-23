@@ -25,6 +25,8 @@ public class Moneyoutlist { //付款明细
     private String note; //备注
 
     private String checkstate; //状态
+    
+    private String agencyId;//网点编号
 
     
 
@@ -101,7 +103,13 @@ public class Moneyoutlist { //付款明细
 	public void setCheckstate(String checkstate) {
 		this.checkstate = checkstate;
 	}
-
+	
+	public String getAgencyId() {
+		return agencyId;
+	}
+	public void setAgencyId(String agencyId) {
+		this.agencyId = agencyId;
+	}
 	public Moneyoutlist() {
 		super();
 		// TODO Auto-generated constructor stub

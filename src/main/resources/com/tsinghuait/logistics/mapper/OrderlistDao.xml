@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tsinghuait.logistics.mapper.OrderlistDao">
+		<!-- 查询所有信息 -->
+      <select id="selector" parameterType="String" resultType="orderlist">
+        select * from orderlist where orderNumber=#{orderNumber} and checkstate=1;      
+      </select>
+      <!-- 修改收件人姓名 -->
+      <update id="updateor"  parameterType="orderlist">
+      update orderlist set  sendername=#{sendername} where orderNumber=#{orderNumber};
+      </update>
+      <!-- 修改状态 -->
+        <update id="updateod"  parameterType="orderlist">
+      update orderlist set  checkstate=#{checkstate} where orderNumber=#{orderNumber};
+      </update>
+<select id="selectOrderlists" resultType="orderlist">
+	select * from orderlist where stus=0;
+</select>
+
+<select id="updateSelectOrderlist" resultType="orderlist" parameterType="String">
+select * from orderlist o where  o.orderNumber=#{orderNumber};
+</select>
+
+<update id="updateOrderlist" parameterType="orderlist">
+  update orderlist
+  <set>
+  barcode =#{barcode},
+  sendername =#{sendername},
+  senderaddress =#{senderaddress},
+  sendCid =#{sendCid},
+  sendPid =#{sendPid},
+  sendArea =#{sendArea},
+  sendertelenumber =#{sendertelenumber},
+  receivername =#{receivername},
+  receiveraddress=#{receiveraddress},
+  receiverCid =#{receiverCid},
+  receiverPid =#{receiverPid},
+  receiverArea =#{receiverArea},
+  receivertelenumber =#{receivertelenumber},
+  number =#{number},
+  weight =#{weight},
+  volume =#{volume},
+  name =#{name},
+  category =#{category},
+  packprice =#{packprice},
+  pkgtype =#{pkgtype},
+  departtime =#{departtime},
+  arrivetime =#{arrivetime},
+  checkstate =#{checkstate},
+  realreceivertelenumber =#{realreceivertelenumber},
+  stuffId =#{stuffId},
+  stus =#{stus},
+  urgent =#{urgent},
+  orderPayType =#{orderPayType},
+  </set>
+  <where>
+  orderNumber =#{orderNumber }
+  </where>
+  </update>
+
+<insert id="insertOrderlist" parameterType="orderlist">
+insert into orderlist(orderNumber,stus) values(#{orderNumber},#{stus})
+</insert>
+
+
+</mapper>

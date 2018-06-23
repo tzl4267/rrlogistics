@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
   <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   
-  
-  
   <!-- namespace 对用的是dao的接口 -->
   <mapper namespace="com.tsinghuait.logistics.mapper.HallarrivalBarcodeDao">
- 
   <!-- 自定义 结果封装-->
   <resultMap type="user" id="userss">
   <!--id:主键对应 ，column:列名/字段  ,property:属性名-->
@@ -32,4 +29,34 @@
  </insert>
  
  
-  </mapper>
+
+	<sql id="hbColumn">
+		hBId,
+		hType,
+		hid,
+		orderNumber
+	</sql>
+
+	<resultMap type="hallarrivalBarcode" id="hbMap">
+		<id column="hBid" property="hBId" />
+		<result column="hType" property="hType" />
+		<result column="hid" property="hid" />
+		<result column="orderNumber" property="orderNumber" />
+	</resultMap>
+
+	<select id="selectAll" resultMap="hbMap" parameterType="hallarrivalBarcode" resultType="hallarrivalBarcode">
+		SELECT
+		<include refid="hbColumn">
+		</include>
+		FROM HALLARRIVALBARCODE
+		<where>
+			<if test="hid!=null and hid!=''">
+				and hid=#{hid}
+			</if>
+			<if test="hType!=null and hType!=''">
+				and hType=#{hType}
+			</if>
+		</where>
+	</select>
+
+</mapper>

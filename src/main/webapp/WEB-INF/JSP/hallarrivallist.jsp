@@ -5,13 +5,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="${pageContext.request.contextPath}/css/bootstrap.min.css"/>
+<link rel="stylesheet" href="${pageContext.request.contextPath}/js/bootstrap/css/bootstrap.min.css"/>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/jquery-3.2.0.min.js" ></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/bootstrap/js/bootstrap.min.js"></script>
 </head>
 <style type="text/css">
-#container{
-
+ #container{
  font-size: 17px;
 padding:11px;
   
@@ -123,7 +122,7 @@ padding:11px;
 	
 	 function exportExcel(){  
 		 location.href="${pageContext.request.contextPath}/hallarrivallist/hello2?hid="+$("#select").val();  
-		<!--这里不能用ajax请求，ajax请求无法弹出下载保存对话框-->  
+		//这里不能用ajax请求，ajax请求无法弹出下载保存对话框
 	 }   
 
 </script>

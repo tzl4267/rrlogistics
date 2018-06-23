@@ -1,5 +1,7 @@
 package com.tsinghuait.logistics.service.impl;
 
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
 
 import javax.annotation.Resource;
@@ -24,18 +26,19 @@ public class PermissionServiceImpl implements PermissionService{
 	/* (non-Javadoc)
 	 * @see com.shiro.service.UserService#findPermissions(java.lang.String)
 	 */
+
+	
+	
 	@Override
-	public Set<Permission> findPermissions(String uname) {
+	public Set<String> findPermissions(String uname) {//根据用户名查询权限集合
 		Set<Permission> pset = pd.findPermissions(uname);
-		return pset;
-	}
-
-	
-	
-
-	@Override
-	public Set<String> findPermissions(Set<Permission> pset) {
-		Set<String> set = pd.findPermissions(pset);
+		Set<String> set = new HashSet<>();
+		Iterator<Permission> it = pset.iterator();  
+		while (it.hasNext()) {  
+			Permission p = it.next();  
+		  set.add(p.getPname());
+		} 
 		return set;
 	}
+	
 }

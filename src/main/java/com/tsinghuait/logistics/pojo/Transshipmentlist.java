@@ -2,39 +2,37 @@ package com.tsinghuait.logistics.pojo;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 /*import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 @Entity
 @Table(name="transshipmentlist")*/
-public class Transshipmentlist { //转运表
-    private String tranId; 
+public class Transshipmentlist { // 转运表
+	private String tranId;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private Date tranTime; // 转运日期
 
-    private Date tranTime; //转运日期
+	private String flightnumber; // 航班号
 
-    private String flightnumber; //航班号
+	private String vehiclecode;// 车辆编号
 
-    private String vehiclecode;//车辆编号
+	private String departureplace; // 出发地
 
-    private String departureplace; //出发地
+	private String destination; // 目的地
 
-    private String destination; //目的地
+	private String containernumber; // 货柜号
 
-    private String containernumber; //货柜号
+	private String supercargo; // 监管员
 
-    private String supercargo; //监管员
-
-    private String checkstate; //转运状态
-
-  
-	
-
-	
+	private String checkstate; // 转运状态
 
 	public Date getTranTime() {
 		return tranTime;
 	}
-	 //@Id
+
+	// @Id
 	public String getTranId() {
 		return tranId;
 	}
@@ -108,5 +106,4 @@ public class Transshipmentlist { //转运表
 		// TODO Auto-generated constructor stub
 	}
 
- 
 }

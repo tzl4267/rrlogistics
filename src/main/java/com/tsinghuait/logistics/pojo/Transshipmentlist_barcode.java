@@ -1,4 +1,4 @@
-package com.tsinghuait.logistics.pojo;
+    package com.tsinghuait.logistics.pojo;
 
 /*import javax.persistence.Entity;
 import javax.persistence.Id;

@@ -44,8 +44,7 @@ public class LoginRealm extends AuthorizingRealm{
 	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection primcipal) {
 		String uname = (String) primcipal.getPrimaryPrincipal();
 		Set<String> rset = us.findRoles(uname);
-		Set<Permission> pset = ps.findPermissions(uname);
-		Set<String> set = ps.findPermissions(pset);
+		Set<String> set = ps.findPermissions(uname);
 		SimpleAuthorizationInfo authorInfo = new SimpleAuthorizationInfo();
 		authorInfo.setRoles(rset);
 		authorInfo.setStringPermissions(set);

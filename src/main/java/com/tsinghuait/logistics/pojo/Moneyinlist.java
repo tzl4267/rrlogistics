@@ -21,11 +21,11 @@ public class Moneyinlist { //收款明细
     
     private Double protectValue;//保价
 
-	private String payType;//付款方式 现金、银行转账
+	private String payType;//付款方式  寄付 / 到付
 
     private String staffid; //员工编号 --> staff
 
-    private String checkstate; //状态
+    private String checkstate; //状态  是否支付
 
     private String orderNumber; // 订单编号
 
@@ -33,7 +33,7 @@ public class Moneyinlist { //收款明细
 	
 	private String note; //备注
 
-	
+	private String agencyId;//网点编号
 
 	
 
@@ -135,6 +135,15 @@ public class Moneyinlist { //收款明细
 
 	public void setNote(String note) {
 		this.note = note;
+	}
+
+	
+	public String getAgencyId() {
+		return agencyId;
+	}
+
+	public void setAgencyId(String agencyId) {
+		this.agencyId = agencyId;
 	}
 
 	public Moneyinlist() {

@@ -16,17 +16,17 @@ public class Repertory {//仓库管理
 
 	    private Date rTimee; //入库时间
 
-	    private String areanumber; //第n区
+	    private String areanumber; //第n区a-za
 
-	    private String rownumber; //第n行
+	    private String rownumber; //第n行102
 
-	    private String framenumber; //第n排
+	    private String framenumber; //第n排503
 
-	    private String placenumber; //第n位
+	    private String placenumber; //第n位401
 
 	    private String checkstate; //入库状态
 	
-	    private String riId;//入库管理id Repertoryin
+	    private String riId;//入库管理id Repertoryin 
 
 	    
 
