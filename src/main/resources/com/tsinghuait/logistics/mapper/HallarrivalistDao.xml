@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+  <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+  
+  
+  <!-- namespace 对用的是dao的接口 -->
+  <mapper namespace="com.tsinghuait.logistics.mapper.HallarrivalistDao">
+ 
+  <!-- 自定义 结果封装-->
+  <resultMap type="user" id="userss">
+  <!--id:主键对应 ，column:列名/字段  ,property:属性名-->
+  <id column="uid" property="id" ></id>
+  <!-- 属性对象 -->
+  <result column="uname" property="name"/>
+  </resultMap>
+  <!-- sql片段 -->
+  <sql id="col">
+   uid,
+   uname
+  </sql>
+  <select id="selectAll" resultMap="userss">
+  select 
+  <!-- 导入片段 -->
+  <include refid="col"></include>
+  from user
+  </select>
+  
+  
+    <!-- 查询营业网点的装车单 -->
+ 	<select id="getLoadlistByID" resultType="loadlist" parameterType="String">
+ 	select * from loadlist
+ 	</select>
+ 	
+ 	 <!-- 查询营业中转站的转运单 -->
+   <select id="getTransshipmentlistById" resultType="transshipmentlist" parameterType="String">
+ 	select * from transshipmentlist
+ 	</select>
+ 
+    <!--查询中转中心 -->
+ 	<select id="getAgencys_zhongzhuan" resultType="agency" parameterType="agency">
+ 	select * from agency where cType=1
+ 	
+ 	</select>
+ 	<!--查询营业网点 -->
+ 	<select id="getAgencys_yinyeting" resultType="agency" parameterType="agency">
+ 	select * from agency where cType=0
+ 	
+ 	</select>
+ 	<insert id="insert_Hallarrivalist" parameterType="hallarrivallist">
+ 	insert into hallarrivallist(hid,checkstate,timee,agencyId,transferNumber) values
+ 	(#{hid},#{checkstate},#{timee},#{agencyId},#{transferNumber})	
+ 	
+ 	</insert>
+ 	
+ 	<select id="getLoadlists" parameterType="String" resultType="loadlistbarcode">
+ 	 select * from loadlistbarcode where transNumber=#{value}
+ 	</select>
+ 	
+ 	<select id="getTransshipmenglists" resultType="transshipmentlist_barcode" parameterType="String">
+ 	 select * form Transshipmentlist_barcode where tranId=#{value}
+ 	</select>
+ 	<select id="getHallarrivallist" resultType="hallarrivallist"  parameterType="String">
+ 	select * from Hallarrivallist where hid=#{value}
+ 	</select>
+  </mapper>

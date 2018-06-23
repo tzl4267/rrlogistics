@@ -7,13 +7,15 @@ import javax.persistence.Table;
 @Table(name="hallarrivalbarcode")*/
 public class HallarrivalBarcode {//中转接收清单
 	
-	private String hBId;//
+	private String hBId;
 	
 	private String hid; //接收编号 
 	
 	private String orderNumber;//订单编号
 	
 	private String hType;//到达状态
+	
+	
 
 	//@Id
 	public String gethBId() {

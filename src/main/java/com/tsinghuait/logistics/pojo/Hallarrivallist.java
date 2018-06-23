@@ -10,10 +10,14 @@ public class Hallarrivallist { //中转接收 HallArrivalList
     private String hid; //编号
 
     private Date timee; //到达日期
-
+    
   //中转单号   对应 Transshipmentlist //转运表 tranid 或者 装车表 Loadlist  transNumber; 运输编号
     private String transferNumber; 
-
+   
+    private String agencyId; //本中心站名称
+    
+   
+    
     private String checkstate; //货物到达状态
 
 
@@ -57,6 +61,14 @@ public class Hallarrivallist { //中转接收 HallArrivalList
 		super();
 		// TODO Auto-generated constructor stub
 	}
+	public String getAgencyId() {
+		return agencyId;
+	}
+	public void setAgencyId(String agencyId) {
+		this.agencyId = agencyId;
+	}
+	
     
+	
     
 }
