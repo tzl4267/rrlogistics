@@ -9,16 +9,21 @@ import java.io.ObjectOutputStream;
 import java.util.concurrent.locks.ReadWriteLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock;
 
+
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.support.SimpleValueWrapper;
 import org.springframework.dao.DataAccessException;
 import org.springframework.data.redis.connection.RedisConnection;
 import org.springframework.data.redis.core.RedisCallback;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.stereotype.Component;
+
 
 import com.tsinghuait.logistics.service.impl.UserServiceImpl;
-
+import net.sf.ehcache.Ehcache;
 import net.sf.ehcache.Element;
 
 public class EhRedis implements org.apache.ibatis.cache.Cache{
@@ -27,8 +32,11 @@ public class EhRedis implements org.apache.ibatis.cache.Cache{
 
     private String id;
 
-    private net.sf.ehcache.Cache ehCache;
+    
+    @Autowired
+    private Ehcache ehCache;
 
+    @Autowired
     private RedisTemplate<String, Object> redisTemplate;
 
     private long liveTime = 1*60*60; //默认1h=1*60*60
@@ -46,7 +54,7 @@ public class EhRedis implements org.apache.ibatis.cache.Cache{
 	@Override
     public Object getObject(Object key) {
          Element value = ehCache.get(key);
-         LOG.info("Cache L1 (ehcache) :{}={}",key,value);
+         LOG.info("Cache L1 (cache) :{}={}",key,value);
         
          if (value!=null&&count<=10) {
              if(value.getHitCount() < count){
@@ -56,7 +64,7 @@ public class EhRedis implements org.apache.ibatis.cache.Cache{
              }
 
          } 
-         //TODO 这样会不会更好？访问10次EhCache 强制访问一次redis 使得数据不失效
+         //TODO 这样会不会更好？访问10次cache 强制访问一次redis 使得数据不失效
          
          final String keyStr = key.toString();  
          Object objectValue = redisTemplate.execute(new RedisCallback<Object>() {  
@@ -82,7 +90,7 @@ public class EhRedis implements org.apache.ibatis.cache.Cache{
 
     @Override
     public void putObject(Object key, Object value) {
-        ehCache.put(new Element(key, value));
+    	ehCache.put(new Element(key, value));
         final String keyStr =  key.toString(); 
         final Object valueStr = value;  
         redisTemplate.execute(new RedisCallback<Long>() {  
@@ -102,7 +110,8 @@ public class EhRedis implements org.apache.ibatis.cache.Cache{
 
     @Override
     public Object removeObject(Object key) {
-        ehCache.remove(key);
+    
+    	ehCache.remove(key);
         final String keyStr =  key.toString();  
         redisTemplate.execute(new RedisCallback<Long>() {  
             public Long doInRedis(RedisConnection connection)  
@@ -115,7 +124,8 @@ public class EhRedis implements org.apache.ibatis.cache.Cache{
 
     @Override
     public void clear(){
-        ehCache.removeAll();
+    	System.out.println("ehCacheFactory"+(ehCache==null));
+    	ehCache.removeAll();
         redisTemplate.execute(new RedisCallback<String>() {  
             public String doInRedis(RedisConnection connection)  
                     throws DataAccessException {  
@@ -125,21 +135,8 @@ public class EhRedis implements org.apache.ibatis.cache.Cache{
         },true);
     }
 
-    public net.sf.ehcache.Cache getEhCache() {
-        return ehCache;
-    }
+    
 
-    public void setEhCache(net.sf.ehcache.Cache ehCache) {
-        this.ehCache = ehCache;
-    }
-
-    public RedisTemplate<String, Object> getRedisTemplate() {
-        return redisTemplate;
-    }
-
-    public void setRedisTemplate(RedisTemplate<String, Object> redisTemplate) {
-        this.redisTemplate = redisTemplate;
-    }
 
     public long getLiveTime() {
         return liveTime;
@@ -226,7 +223,7 @@ public class EhRedis implements org.apache.ibatis.cache.Cache{
 	@Override
 	public String getId() {
 		
-		return null;
+		return this.id;
 	}
 	
 	public EhRedis(final String id) {
@@ -239,6 +236,11 @@ public class EhRedis implements org.apache.ibatis.cache.Cache{
 	public ReadWriteLock getReadWriteLock() {
 		
 		return this.readWriteLock;
+	}
+
+	public EhRedis() {
+		super();
+		// TODO Auto-generated constructor stub
 	}
 
 	

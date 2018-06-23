@@ -101,13 +101,23 @@
             <artifactId>javax.servlet-api</artifactId>
             <scope>provided</scope>
         </dependency>
-        <!-- fastdfs -->
+        <!-- fastdfs --> 
         <dependency>
 			<groupId>com.github.tobato</groupId>
 			<artifactId>fastdfs-client</artifactId>
 			<version>1.26.2</version>
 		</dependency>
-        
+        <dependency>
+        	<groupId>javax.servlet.jsp</groupId>
+        	<artifactId>jsp-api</artifactId>
+        	<version>2.1</version>
+        </dependency>
+        <dependency> 
+	        <groupId>org.mybatis</groupId> 
+	        <artifactId>mybatis-ehcache</artifactId> 
+	        <version>1.0.0</version>
+        </dependency> 
+
 	</dependencies>
 
 	<build>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tsinghuait.logistics.mapper.RoleDao">
+
+<resultMap type="role" id="basetype">
+<id column="rid" property="rid"/>
+<result column="rname" property="rname"/>
+<result column="rinfo" property="rinfo"/>
+</resultMap>
+
+<sql id="basesql">
+rid,rname,rinfo
+</sql>
+
+<select id="findAll" resultMap="basetype">
+select 
+<include refid="basesql"></include>
+from role where rname != '管理员'
+</select>
+
+<select id="findByType" resultMap="basetype" parameterType="java.lang.String">
+select 
+<include refid="basesql"></include>
+from role where 
+<if test="value">
+rname like '%${value}%' 
+</if>
+<if test="value==null or value ==''">
+rname not in ('管理员','总经理')
+</if>
+</select>
+
+<select id="getUser_RoleId" resultType="java.lang.String">
+select 
+urid
+ from user_role order by urid desc limit 0 ,1;
+</select>
+
+<insert id="insertUser_Role" parameterType="user_role">
+insert into user_role(urid,userId,rid) 
+
+values(#{urid},#{userId},#{rid});
+</insert>
+</mapper>
