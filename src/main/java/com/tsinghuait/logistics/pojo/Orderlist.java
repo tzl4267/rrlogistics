@@ -1,6 +1,10 @@
 package com.tsinghuait.logistics.pojo;
 
 import java.util.Date;
+
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 /*import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -50,9 +54,11 @@ public class Orderlist { // 订单/结算
     private Double packprice; //(包装费)
 
     private String pkgtype; //包裹类别
-
+    @JsonFormat(pattern="yyyy-MM-dd")
+	@DateTimeFormat(pattern="yyyy-MM-dd")
     private Date departtime; //出发时间
-
+    @JsonFormat(pattern="yyyy-MM-dd")
+	@DateTimeFormat(pattern="yyyy-MM-dd")
     private Date arrivetime; //到达时间
 
     private String checkstate; //是否达到 
@@ -66,9 +72,19 @@ public class Orderlist { // 订单/结算
 	private String urgent;//是否加急
 	
 	private String orderPayType;//付费方式 到付/寄付
+	
+	private Double moneyTota;//运费
+	
+	
+	
+	public Double getMoneyTota() {
+		return moneyTota;
+	}
 
-	
-	
+	public void setMoneyTota(Double moneyTota) {
+		this.moneyTota = moneyTota;
+	}
+
 	public String getBarcode() {
 		return barcode;
 	}

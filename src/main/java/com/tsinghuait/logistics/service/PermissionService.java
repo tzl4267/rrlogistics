@@ -2,14 +2,12 @@ package com.tsinghuait.logistics.service;
 
 import java.util.Set;
 
-import com.tsinghuait.logistics.pojo.Permission;
 
 
 
 public interface PermissionService {
 
-    Set<Permission> findPermissions(String uname);
 	
-	Set<String> findPermissions(Set<Permission> pset);
+	Set<String> findPermissions(String uname);//根据用户名查询权限集合
 	
 }

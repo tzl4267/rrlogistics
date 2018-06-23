@@ -18,6 +18,8 @@ public class MoneyTotal {//收款记录
 	    private Double receivable;//应收
 	    
 	    private String mInfo;//备注
+	    
+	    private String agencyId;//网点编号
 
 	    
 	    //@Id
@@ -59,6 +61,14 @@ public class MoneyTotal {//收款记录
 
 		public void setmInfo(String mInfo) {
 			this.mInfo = mInfo;
+		}
+
+		public String getAgencyId() {
+			return agencyId;
+		}
+
+		public void setAgencyId(String agencyId) {
+			this.agencyId = agencyId;
 		}
 
 		public MoneyTotal() {
