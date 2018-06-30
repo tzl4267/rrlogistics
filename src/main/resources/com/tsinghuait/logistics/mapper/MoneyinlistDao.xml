@@ -4,4 +4,53 @@
 <insert id="insertMoneyinlist" parameterType="moneyinlist">
 insert into moneyinlist(mid,moneyTota,orderNumber) values(#{mid},#{moneyTota},#{orderNumber})
 </insert>
+<!-- 查询多少条和总金额， 多少条反回的是long型数据 如果是只查多少条时，这里可以返回int类型，
+   这里返回值是一个map类型，如过只一条记录，dao里接收是map，如果是多条记录，dao要用list<Map> 来接收，这里的返回值不用变
+
+-->
+<select id="selectCount" parameterType="Map" resultType="Map">
+select count(*) countAll ,sum(moneyTota) sunMoney from moneyinlist
+<where>
+<if test="agencyId!=null">
+	and agencyId=#{agencyId}
+</if>	
+<if test="begin_time!=null">
+and mTimee> #{begin_time}
+
+</if>
+<if test="end_time!=null">
+and mTimee  &lt; ADDDATE(#{end_time},INTERVAL 1 DAY)
+</if>
+ and checkstate='0'
+</where>
+
+
+
+</select>
+
+<!-- 根据条件查询 收款明细清单，注意这里的条件判断，这样这个查询语句就可以通用了 另外数据库里是datetime ,这里带的时间
+变量可以时间字符串和时间对象，另外注意着里的前后时间，大于，还是当天的时间，小于要写当天+1天。 另外注意这里的第二个>号要写&lt;
+格式不然报错。
+-->
+<select id="selectMoneyinlists" parameterType="Map" resultType="Moneyinlist">
+
+select * from moneyinlist
+<where>
+<if test="agencyId!=null">
+	and agencyId=#{agencyId}
+</if>
+<if test="begin_time!=null">
+and mTimee> #{begin_time}
+
+</if>
+<if test="end_time!=null">
+and mTimee  &lt; ADDDATE(#{end_time},INTERVAL 1 DAY)
+</if>
+ and checkstate='0'
+</where>
+<if test="p!=null">
+ limit ${p},#{pb.pageNumber};
+ </if>
+</select>
+
 </mapper>

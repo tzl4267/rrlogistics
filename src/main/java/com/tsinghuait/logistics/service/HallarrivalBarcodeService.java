@@ -6,5 +6,6 @@ import com.tsinghuait.logistics.pojo.HallarrivalBarcode;
 
 public interface HallarrivalBarcodeService {
 	List<HallarrivalBarcode> selectAll(HallarrivalBarcode hallarrivalBarcode);
+	
 
 }

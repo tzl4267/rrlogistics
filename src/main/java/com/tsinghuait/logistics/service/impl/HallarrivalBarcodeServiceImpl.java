@@ -22,4 +22,5 @@ public class HallarrivalBarcodeServiceImpl implements HallarrivalBarcodeService 
 		return hd.selectAll(hallarrivalBarcode);
 	}
 
+	
 }

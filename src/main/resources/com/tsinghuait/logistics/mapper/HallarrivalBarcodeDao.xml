@@ -15,13 +15,7 @@
    uid,
    uname
   </sql>
-  <select id="selectAll" resultMap="userss">
-  select 
-  <!-- 导入片段 -->
-  <include refid="col"></include>
-  from user
-  </select>
- 
+  
  
  
  <insert id="insert_hallarrivlBarcode" parameterType="hallarrivalBarcode">
@@ -58,5 +52,7 @@
 			</if>
 		</where>
 	</select>
-
+  <select id="selectallByHid" parameterType="String" resultType="hallarrivalBarcode">
+ 	 select * from hallarrivalBarcode where hid=#{value}
+  </select>
 </mapper>

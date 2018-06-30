@@ -28,12 +28,12 @@
   
     <!-- 查询营业网点的装车单 -->
  	<select id="getLoadlistByID" resultType="loadlist" parameterType="String">
- 	select * from loadlist
+ 	select * from loadlist where transNumber=#{value}
  	</select>
  	
  	 <!-- 查询营业中转站的转运单 -->
    <select id="getTransshipmentlistById" resultType="transshipmentlist" parameterType="String">
- 	select * from transshipmentlist
+ 	select * from transshipmentlist  where tranId=#{value}
  	</select>
  
     <!--查询中转中心 -->
@@ -60,6 +60,13 @@
  	 select * form Transshipmentlist_barcode where tranId=#{value}
  	</select>
  	<select id="getHallarrivallist" resultType="hallarrivallist"  parameterType="String">
- 	select * from Hallarrivallist where hid=#{value}
+ 	select * from hallarrivallist where hid=#{value}
+ 	</select>
+ 	<select id="gethallarrliva" resultType="hallarrivallist" parameterType="hallarrivallist">
+ 	select * from hallarrivallist where agencyId=#{agencyId} and timee > #{timee} 
+ 	and timee   &lt; ADDDATE(#{timee},INTERVAL 1 DAY)
+ 	</select>
+ 	<select id="getAgency" parameterType="String" resultType="agency">
+ 	select * from agency where agencyId=#{value}
  	</select>
   </mapper>

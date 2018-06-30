@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.tsinghuait.logistics.pojo.Hallarrivallist;
 
-public class Biji {
+public class Biji { //wj
 	private String biaoji;
 	private String hsddd;
 	private Hallarrivallist ha;

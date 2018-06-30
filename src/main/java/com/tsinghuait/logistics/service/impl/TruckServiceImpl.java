@@ -19,7 +19,7 @@ public class TruckServiceImpl implements TruckService {
 
 	@Override
 	public List<Truck> selectTruck() {
-		return td.selectTruck();}
+		return td.selectTruck1();}
 	@Override
 	public List<Truck> selectTruckAll(Truck truck) {
 		return td.selectTruck(truck);

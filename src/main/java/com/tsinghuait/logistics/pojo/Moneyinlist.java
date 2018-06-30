@@ -1,6 +1,8 @@
 package com.tsinghuait.logistics.pojo;
 
 import java.util.Date;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 /*import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -10,7 +12,7 @@ import javax.persistence.Table;
 @Table(name="moneyinlist")*/
 public class Moneyinlist { //收款明细
     private String mid; //编号
-
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss")
     private Date mTimee; //时间
 
     private Double moneyTota; //总金额

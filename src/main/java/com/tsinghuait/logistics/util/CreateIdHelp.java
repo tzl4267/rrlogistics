@@ -9,7 +9,7 @@ import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 
 @Component
-public class CreateIdHelp {
+public class CreateIdHelp {//wj
 	@Resource
 	private  JedisPool jsd;//得到缓存对象 
 	
