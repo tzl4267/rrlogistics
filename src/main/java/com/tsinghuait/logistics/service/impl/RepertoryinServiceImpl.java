@@ -16,8 +16,8 @@ public class RepertoryinServiceImpl implements RepertoryinService {
 	private RepertoryinDao rd;
 
 	@Override
-	public void insertRepertoryin(Repertoryin repertoryin) {
-		rd.insertRepertoryin(repertoryin);
+	public int insertRepertoryin(Repertoryin repertoryin) {
+		return rd.insertRepertoryin(repertoryin);
 	}
 
 }

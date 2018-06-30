@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
   <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.tsinghuait.logistics.mapper.TruckDao">
-	<select id="selectTruck" resultType="truck">
+	<select id="selectTruck1" resultType="truck">
 	SELECT * FROM TRUCK;
 	</select>
 <select id="selectTruck" resultType="truck" parameterType="truck">

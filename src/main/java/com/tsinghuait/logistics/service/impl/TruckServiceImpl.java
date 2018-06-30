@@ -19,23 +19,29 @@ public class TruckServiceImpl implements TruckService {
 
 	@Override
 	public List<Truck> selectTruck() {
-		return td.selectTruck();}
+		return td.selectTruck1();
+	}
+
 	@Override
 	public List<Truck> selectTruckAll(Truck truck) {
 		return td.selectTruck(truck);
 	}
+
 	@Override
 	public void deleteTruck(String vehiclecode) {
 		td.deleteTruck(vehiclecode);
 	}
+
 	@Override
 	public Truck updateSelectTruck(String vehiclecode) {
 		return td.updateSelectTruck(vehiclecode);
 	}
+
 	@Override
 	public void updateTruck(Truck truck) {
 		td.updateTruck(truck);
 	}
+
 	@Override
 	public void insertTruck(Truck truck) {
 		td.insertTruck(truck);

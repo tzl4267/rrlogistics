@@ -7,4 +7,5 @@
 		values(#{riId},#{orderNumber},#{riTimee},#{destination
 		},#{checkstate})
 	</insert>
+
 </mapper>

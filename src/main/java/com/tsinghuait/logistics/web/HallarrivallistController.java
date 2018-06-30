@@ -66,8 +66,8 @@ public class HallarrivallistController {
 
 	@RequestMapping("/hello1")
 	@ResponseBody
-	public Biji insert_employee(MultipartFile mfile, String radio, String tranId, String transNumber,
-			String checkstate) throws IOException {
+	public Biji insert_employee(MultipartFile mfile, String radio, String tranId, String transNumber, String checkstate)
+			throws IOException {
 		Jedis jd = jsd.getResource();// redis
 
 		Hallarrivallist h = new Hallarrivallist();// 新建接中中转接收对象
@@ -87,7 +87,6 @@ public class HallarrivallistController {
 		h.setTransferNumber(cc);// 中转接收单
 		h.setCheckstate(checkstate);// 接收状态
 		jd.set("hid", id);// 添加成功后Redis hid要同步
-		
 
 		// 表到入数据库
 		String filename = mfile.getOriginalFilename();// 得到客户端上传文件的名字
@@ -147,7 +146,7 @@ public class HallarrivallistController {
 				// 给对象赋值
 
 				d.setOrderNumber(ordernumber);
-				
+
 				d.sethType(htype);
 				d.setHid(id);
 				String hBId = ch.getHallarrivllist_id("hBId");
@@ -159,7 +158,7 @@ public class HallarrivallistController {
 				list.add(d);// 从表中的数据进行生成的对象添加进集合
 				jd.set("hBId", hBId);// 同步redis
 				jlist.add(d);
-				
+
 			}
 		}
 
@@ -188,9 +187,7 @@ public class HallarrivallistController {
 				flist.add(string);
 			}
 		}
-        
-		
-		
+
 		for (String string : flist) {// 对比之后将丢失的包裹添加进数据库
 			HallarrivalBarcode hal = new HallarrivalBarcode();
 			String hBid = ch.getHallarrivllist_id("hBId");
@@ -201,20 +198,20 @@ public class HallarrivallistController {
 			jd.set("hBId", hBid);
 			jlist.add(hal);
 		}
-		
-		Biji bi=new Biji();
-		
-		//统计中转接收情况
-		Integer yingshou=slist.size();
-		Integer shishou=list.size();
-		Integer shunshi=eList.size();
-		Integer diushi=flist.size();
-		
+
+		Biji bi = new Biji();
+
+		// 统计中转接收情况
+		Integer yingshou = slist.size();
+		Integer shishou = list.size();
+		Integer shunshi = eList.size();
+		Integer diushi = flist.size();
+
 		try {// 执行批量添加
 			hs.zhongzhuanjieshou(h, jlist);
 			bi.setHa(h);
 			bi.setBiaoji("ok");
-			bi.setHsddd("本次应收包裹"+yingshou+"个，实收"+shishou+"个，丢失包裹"+diushi+"个,损坏"+shunshi+"个。");
+			bi.setHsddd("本次应收包裹" + yingshou + "个，实收" + shishou + "个，丢失包裹" + diushi + "个,损坏" + shunshi + "个。");
 			return bi;
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -226,16 +223,15 @@ public class HallarrivallistController {
 			jd.set("hid", hid);
 			jd.set("hBId", hbid);
 		}
-		
-			
-			bi.setBiaoji("error");
-			bi.setHsddd("生成中转中心单有问题，请重新提交！");
+
+		bi.setBiaoji("error");
+		bi.setHsddd("生成中转中心单有问题，请重新提交！");
 		return bi;
 
 	}
 
 	@RequestMapping("/hello2")
-	public void outExcle(String hid,HttpServletResponse response) throws Exception{
+	public void outExcle(String hid, HttpServletResponse response) throws Exception {
 		Hallarrivallist hadl = hs.getHallarrivallist(hid);
 		String[] excelHeader = { "hid", "timee", "transferNumber" };
 		HSSFWorkbook wb = new HSSFWorkbook();
@@ -263,7 +259,6 @@ public class HallarrivallistController {
 		wb.write(ouputStream);
 		ouputStream.flush();
 		ouputStream.close();
-	    
 
 	}
 

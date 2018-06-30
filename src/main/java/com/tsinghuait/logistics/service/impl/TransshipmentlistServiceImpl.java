@@ -16,7 +16,7 @@ public class TransshipmentlistServiceImpl implements TransshipmentlistService {
 	private TransshipmentlistDao td;
 
 	@Override
-	public void insertTransshipmentlist(Transshipmentlist tp) {
-		td.insertTransshipmentlist(tp);
+	public int insertTransshipmentlist(Transshipmentlist tp) {
+		return td.insertTransshipmentlist(tp);
 	}
 }

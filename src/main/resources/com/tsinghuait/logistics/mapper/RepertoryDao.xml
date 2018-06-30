@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+  <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tsinghuait.logistics.mapper.RepertoryDao">
+	<insert id="insertRepertory" parameterType="repertory">
+		insert into
+		repertory(rid,orderNumber,rTimee,areanumber,rownumber,framenumber,placenumber,checkstate,riId)
+		values(#{rid},#{orderNumber},#{rTimee},#{areanumber
+		},#{rownumber},#{framenumber},#{placenumber},#{checkstate},#{riId})
+	</insert>
+
+	<select id="selectRepertory" parameterType="Map" resultType="repertory">
+		select * from repertory
+		<where>
+			<if test="r.checkstate!=null and r.checkstate!=''">
+				and checkstate='${r.checkstate}'
+			</if>
+		</where>
+		limit
+		${p},#{page.pageNumber};
+	</select>
+
+	<select id="getCountRepertory" resultType="int">
+		select count(*) from repertory
+		<where>
+			<if test="checkstate!=null and checkstate!=''">
+				and checkstate=#{checkstate}
+			</if>
+		</where>
+	</select>
+
+</mapper>

@@ -4,7 +4,6 @@
 	<insert id="insertTransshipmentlist_barcode" parameterType="transshipmentlist_barcode">
 		insert into
 		transshipmentlist_barcode(primarykey,orderNumber,tranId,state)
-		values(#{primarykey},#{orderNumber},#{tranId
-		},#{state})
+		values(#{primarykey},#{orderNumber},#{tranId },#{state})
 	</insert>
 </mapper>

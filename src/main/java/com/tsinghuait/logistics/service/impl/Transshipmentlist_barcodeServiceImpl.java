@@ -18,8 +18,8 @@ public class Transshipmentlist_barcodeServiceImpl implements Transshipmentlist_b
 	private Transshipmentlist_barcodeDao tbd;
 
 	@Override
-	public void insertTransshipmentlist_barcode(Transshipmentlist_barcode tb) {
-		tbd.insertTransshipmentlist_barcode(tb);
+	public int insertTransshipmentlist_barcode(Transshipmentlist_barcode tb) {
+		return tbd.insertTransshipmentlist_barcode(tb);
 	}
 
 	@Override
