@@ -2,6 +2,10 @@ package com.tsinghuait.logistics.pojo;
 
 import java.util.Date;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 /*import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -13,6 +17,8 @@ public class Repertoryout { //出库管理
 
     private String orderNumber; //订单编号
 
+    @JsonFormat(pattern="yyyy-MM-dd")
+    @DateTimeFormat(pattern="yyyy-MM-dd")
     private Date roTime; //出库日期
 
     private String destination; //目的地
@@ -20,10 +26,6 @@ public class Repertoryout { //出库管理
     private String transportation; //装运方式
 
     private String checkstate; //出库状态
-
-    
-  
-	
 
 	public String getOrderNumber() {
 		return orderNumber;

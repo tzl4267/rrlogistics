@@ -22,7 +22,7 @@
  insert into hallarrivalBarcode(hBId,hid,hType,orderNumber) values(#{hBId},#{hid},#{hType},#{orderNumber})
  </insert>
  
- 
+
 
 	<sql id="hbColumn">
 		hBId,
@@ -38,17 +38,35 @@
 		<result column="orderNumber" property="orderNumber" />
 	</resultMap>
 
-	<select id="selectAll" resultMap="hbMap" parameterType="hallarrivalBarcode" resultType="hallarrivalBarcode">
+	<select id="selectAll" resultMap="hbMap" parameterType="Map"
+		resultType="hallarrivalBarcode">
 		SELECT
 		<include refid="hbColumn">
 		</include>
 		FROM HALLARRIVALBARCODE
 		<where>
-			<if test="hid!=null and hid!=''">
-				and hid=#{hid}
+			<if test="h.hType!=null and h.hType!=''">
+				and hType=#{h.hType}
 			</if>
+			<if test="h.hid!=null and h.hid!=''">
+				and hid=#{h.hid}
+			</if>
+		</where>
+		limit ${p},#{page.pageNumber};
+	</select>
+
+
+	<select id="getCountHallarrivalBarcode" resultType="int"
+		parameterType="hallarrivalBarcode">
+		SELECT
+		count(*)
+		FROM HALLARRIVALBARCODE
+		<where>
 			<if test="hType!=null and hType!=''">
 				and hType=#{hType}
+			</if>
+			<if test="hid!=null and hid!=''">
+				and hid=#{hid}
 			</if>
 		</where>
 	</select>

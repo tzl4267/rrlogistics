@@ -20,7 +20,7 @@ public class PageBean<T> {
 
 	// 设置默认每页显示数据是2条
 	public PageBean() {
-		this.setPageNumber(5);
+		this.setPageNumber(2);
 	}
 
 	// 根据需要设置每页显示数据条数

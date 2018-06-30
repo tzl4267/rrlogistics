@@ -84,6 +84,7 @@ public class HallarrivallistController {// wangjing
 		String id = ch.getHallarrivllist_id("hid");
 		HttpSession see=request.getSession();
 		h.setAgencyId((String)see.getAttribute("agencyId"));
+ 
 		h.setHid(id);
 		// 现在的时间
 		h.setTimee(new Date());
@@ -104,6 +105,7 @@ public class HallarrivallistController {// wangjing
 		h.setCheckstate(checkstate);
 		// 添加成功后Redis hid要同步
 		jd.set("hid", id);
+ 
 
 		// 表到入数据库
 		// 得到客户端上传文件的名字
@@ -166,6 +168,7 @@ public class HallarrivallistController {// wangjing
 				HallarrivalBarcode d = new HallarrivalBarcode();
 				// 给对象赋值
 				d.setOrderNumber(ordernumber);
+ 
 				d.sethType(htype);
 				d.setHid(id);
 				
@@ -210,8 +213,10 @@ public class HallarrivallistController {// wangjing
 				flist.add(string);
 			}
 		}
+ 
 		// 对比之后将丢失的包裹添加进数据库
 		for (String string : flist) {
+ 
 			HallarrivalBarcode hal = new HallarrivalBarcode();
 			String hBid = ch.getHallarrivllist_id("hBId");
 			hal.sethBId(hBid);
@@ -235,6 +240,7 @@ public class HallarrivallistController {// wangjing
 			bi.setHa(h);
 			bi.setBiaoji("ok");
 			// 计算poi导入的情况并返回前台
+ 
 			bi.setHsddd("本次应收包裹" + yingshou + "个，实收" + shishou + "个，丢失包裹" + diushi + "个,损坏" + shunshi + "个。");
 			return bi;
 		} catch (Exception e) {
@@ -255,6 +261,7 @@ public class HallarrivallistController {// wangjing
 	}
 
 	@RequestMapping("/hello2")
+ 
 	public void outExcle(String hid, HttpServletResponse response) throws Exception {// poi导出
 		Hallarrivallist hadl = hs.getHallarrivallist(hid);// 根据编号查询中转中心单
 		Agency ag = hs.getAgency(hadl.getAgencyId());// 查询本中转中心的名称
@@ -278,6 +285,7 @@ public class HallarrivallistController {// wangjing
 		// 实收的包裹
 		String c = String.valueOf(hals.size() - b);
 
+ 
 		HSSFWorkbook wb = new HSSFWorkbook();
 		HSSFSheet sheet = wb.createSheet("中转中心接收单");
 		HSSFRow row = sheet.createRow((int) 0);
@@ -345,6 +353,7 @@ public class HallarrivallistController {// wangjing
 		wb.write(ouputStream);
 		ouputStream.flush();
 		ouputStream.close();
+  
 	}
 
 	/**

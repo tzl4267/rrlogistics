@@ -22,4 +22,8 @@ public interface HallarrivalistDao {
 	Hallarrivallist getHallarrivallist(String hid);//根据中转中心接收编号查询对象
 	List<Hallarrivallist> gethallarrliva(Hallarrivallist ha);//根据中转中心的时间和中转编号查询中转中心单
 	Agency getAgency(String agencyId);//根据网点编号查询网点对象
+
+
+
+
 }
